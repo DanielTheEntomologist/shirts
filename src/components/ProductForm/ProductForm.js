@@ -1,5 +1,4 @@
 import styles from "./ProductForm.module.scss";
-import clsx from "clsx";
 import Button from "../Button/Button";
 import OptionColor from "../OptionColor/OptionColor";
 import OptionSize from "../OptionSize/OptionSize";
@@ -15,14 +14,6 @@ const ProductForm = ({
   updateColor,
   submitOrder,
 }) => {
-  const colorClassMap = {
-    blue: styles.colorBlue,
-    red: styles.colorRed,
-    white: styles.colorWhite,
-    black: styles.colorBlack,
-    green: styles.colorGreen,
-  };
-
   return (
     <form onSubmit={submitOrder}>
       <OptionSize
