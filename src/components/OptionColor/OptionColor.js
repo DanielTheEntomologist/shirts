@@ -2,15 +2,18 @@ import styles from "./OptionColor.module.scss";
 import clsx from "clsx";
 
 import PropTypes from "prop-types";
+import { useMemo } from "react";
 
 const OptionColor = ({ colors, currentColor, updateColor }) => {
-  const colorClassMap = {
-    blue: styles.colorBlue,
-    red: styles.colorRed,
-    white: styles.colorWhite,
-    black: styles.colorBlack,
-    green: styles.colorGreen,
-  };
+  const colorClassMap = useMemo(() => {
+    return {
+      blue: styles.colorBlue,
+      red: styles.colorRed,
+      white: styles.colorWhite,
+      black: styles.colorBlack,
+      green: styles.colorGreen,
+    };
+  }, []);
 
   return (
     <div className={styles.colors}>
