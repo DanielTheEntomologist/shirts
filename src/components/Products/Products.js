@@ -6,16 +6,19 @@ import { nanoid } from "nanoid";
 const Products = () => {
   const [products, setProducts] = useState(productsData);
 
-  // change the data on first mount to include key for each product
-  useEffect(() => {
-    setProducts(productsData.map((product) => ({ ...product, key: nanoid() })));
-    // setProducts([...productsData, Products[0]]);
-  }, []);
+  // apparently react will always render first then useEffect will run
+  // so assigning keys to products in useEffect is too late to avoid the warning about missing keys
+  // useEffect(() => {
+  //   console.log("Products component assigned keys to products.");
+  //   setProducts(productsData.map((product) => ({ ...product, key: nanoid() })));
+  // }, []);
 
   return (
     <section>
       {products.map((product) => {
-        return <Product {...product} />;
+        return (
+          <Product key={product.id} shirtName={product.name} {...product} />
+        );
       })}
     </section>
   );
