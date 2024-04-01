@@ -49,6 +49,10 @@ const Product = ({ id, shirtName, title, basePrice, sizes, colors, image }) => {
                       className={clsx(
                         size.name === currentSize && styles.active
                       )}
+                      onClick={() => {
+                        setCurrentSize(size.name);
+                        setCurrentPrice(basePrice + size.additionalPrice);
+                      }}
                     >
                       {size.name}
                     </button>
@@ -69,6 +73,9 @@ const Product = ({ id, shirtName, title, basePrice, sizes, colors, image }) => {
                         colorClassMap[color],
                         color === currentColor && styles.active
                       )}
+                      onClick={() => {
+                        setCurrentColor(color);
+                      }}
                     />
                   </li>
                 );
