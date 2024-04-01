@@ -5,6 +5,7 @@ import Button from "../Button/Button";
 import { useState } from "react";
 
 import PropTypes from "prop-types";
+import ProductImage from "../ProductImage/ProductImage";
 
 const Product = ({ id, shirtName, title, basePrice, sizes, colors, image }) => {
   const [currentColor, setCurrentColor] = useState(colors[0]);
@@ -38,13 +39,7 @@ const Product = ({ id, shirtName, title, basePrice, sizes, colors, image }) => {
 
   return (
     <article className={styles.product}>
-      <div className={styles.imageContainer}>
-        <img
-          className={styles.image}
-          alt={title}
-          src={`${process.env.PUBLIC_URL}/images/products/shirt-${shirtName}--${currentColor}.jpg`}
-        />
-      </div>
+      <ProductImage title={title} shirtName={shirtName} color={currentColor} />
       <div>
         <header>
           <h2 className={styles.name}>{title}</h2>
