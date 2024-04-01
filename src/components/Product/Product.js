@@ -1,6 +1,4 @@
 import styles from "./Product.module.scss";
-import clsx from "clsx";
-import Button from "../Button/Button";
 
 import { useState } from "react";
 
@@ -33,14 +31,6 @@ const Product = ({ id, shirtName, title, basePrice, sizes, colors, image }) => {
 
   const updateColor = function (color) {
     setCurrentColor(color);
-  };
-
-  const colorClassMap = {
-    blue: styles.colorBlue,
-    red: styles.colorRed,
-    white: styles.colorWhite,
-    black: styles.colorBlack,
-    green: styles.colorGreen,
   };
 
   return (
