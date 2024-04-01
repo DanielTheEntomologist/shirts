@@ -13,10 +13,6 @@ const Product = ({ id, shirtName, title, basePrice, sizes, colors, image }) => {
   const [currentPrice, setCurrentPrice] = useState(basePrice);
   const [currentSize, setCurrentSize] = useState(sizes[0].name);
 
-  const capitalizeFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
-
   const submitOrder = function (e) {
     e.preventDefault();
     console.log(
