@@ -15,6 +15,19 @@ const Product = ({ id, shirtName, title, basePrice, sizes, colors, image }) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
+  const submitOrder = function (e) {
+    e.preventDefault();
+    console.log(
+      `Order Summary:
+      =================
+      Name: ${title} 
+      Price: ${currentPrice}
+      Size: ${currentSize}
+      Color: ${currentColor}
+      =================`
+    );
+  };
+
   const colorClassMap = {
     blue: styles.colorBlue,
     red: styles.colorRed,
@@ -37,7 +50,7 @@ const Product = ({ id, shirtName, title, basePrice, sizes, colors, image }) => {
           <h2 className={styles.name}>{title}</h2>
           <span className={styles.price}>Price: {currentPrice}$</span>
         </header>
-        <form>
+        <form onSubmit={submitOrder}>
           <div className={styles.sizes}>
             <h3 className={styles.optionLabel}>Sizes</h3>
             <ul className={styles.choices}>
@@ -49,7 +62,8 @@ const Product = ({ id, shirtName, title, basePrice, sizes, colors, image }) => {
                       className={clsx(
                         size.name === currentSize && styles.active
                       )}
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.preventDefault();
                         setCurrentSize(size.name);
                         setCurrentPrice(basePrice + size.additionalPrice);
                       }}
@@ -73,7 +87,8 @@ const Product = ({ id, shirtName, title, basePrice, sizes, colors, image }) => {
                         colorClassMap[color],
                         color === currentColor && styles.active
                       )}
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.preventDefault();
                         setCurrentColor(color);
                       }}
                     />
