@@ -1,6 +1,6 @@
 import styles from "./Product.module.scss";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 import PropTypes from "prop-types";
 import ProductImage from "../ProductImage/ProductImage";
@@ -29,9 +29,12 @@ const Product = ({ id, shirtName, title, basePrice, sizes, colors, image }) => {
     setCurrentPrice(basePrice + additionalPrice);
   };
 
-  const updateColor = function (color) {
-    setCurrentColor(color);
-  };
+  const updateColor = useCallback(
+    function (color) {
+      setCurrentColor(color);
+    },
+    [currentColor]
+  );
 
   return (
     <article className={styles.product}>
