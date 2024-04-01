@@ -1,6 +1,6 @@
 import styles from "./Product.module.scss";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 
 import PropTypes from "prop-types";
 import ProductImage from "../ProductImage/ProductImage";
@@ -24,17 +24,23 @@ const Product = ({ id, shirtName, title, basePrice, sizes, colors, image }) => {
     );
   };
 
-  const updateSize = function (sizeName, additionalPrice) {
+  const price = useMemo(
+    function () {
+      const currentSizeData = sizes.find((size) => size.name === currentSize);
+      setCurrentPrice(basePrice + currentSizeData.additionalPrice);
+      return basePrice + currentSizeData.additionalPrice;
+    },
+    [basePrice, currentSize, sizes]
+  );
+
+  const updateSize = function (sizeName) {
     setCurrentSize(sizeName);
-    setCurrentPrice(basePrice + additionalPrice);
+    setCurrentPrice(price);
   };
 
-  const updateColor = useCallback(
-    function (color) {
-      setCurrentColor(color);
-    },
-    [currentColor]
-  );
+  const updateColor = useCallback(function (color) {
+    setCurrentColor(color);
+  }, []);
 
   return (
     <article className={styles.product}>
